@@ -5,11 +5,12 @@ from django.db import models
 class Edificio(models.Model):
     nombre = models.CharField(max_length=30)
     direccion = models.CharField(max_length=30)
-    ciudad = models.CharField(max_length=30, unique=True)
+    ciudad = models.CharField(max_length=30)
     
-    tipo_opciones = ('Residencial', 'Comercial')
+    tipo_opciones = (('Residencial', 'Residencial'),
+                ('Comercial','Comercial'))
     
-    tipo = models.CharField(choices=tipo_opciones)
+    tipo = models.CharField(max_length=30 ,choices=tipo_opciones)
 
     
 
