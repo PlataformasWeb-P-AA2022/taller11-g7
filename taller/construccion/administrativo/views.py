@@ -1,5 +1,8 @@
 from contextlib import redirect_stderr
+from django.shortcuts import render, redirect
+from django.template import RequestContext
 from django.shortcuts import render
+
 
 # Create your views here.
 
@@ -8,7 +11,7 @@ from administrativo.forms import *
 
 def index(request):
     edificios = Edificio.objects.all()
-    informacion_template = {'edificio':edificios, 'numero_edificios': len(edificios)}
+    informacion_template = {'edificios':edificios, 'numero_edificios': len(edificios)}
     return render(request, 'index.html',informacion_template)
 
 def obtener_edificio(request, id):
