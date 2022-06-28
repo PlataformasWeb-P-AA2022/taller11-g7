@@ -1,8 +1,7 @@
-from contextlib import redirect_stderr
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render
-
 
 # Create your views here.
 
