@@ -4,12 +4,34 @@ from django.db import models
 
 class Edificio(models.Model):
     nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-    cedula = models.CharField(max_length=30, unique=True)
-    correo = models.EmailField()
+    direccion = models.CharField(max_length=30)
+    ciudad = models.CharField(max_length=30, unique=True)
+    
+    tipo_opciones = ('Residencial', 'Comercial')
+    
+    tipo = models.CharField(choices=tipo_opciones)
+
+    
 
     def __str__(self):
         return "%s %s %s %s" % (self.nombre,
-                self.apellido,
-                self.cedula,
-                self.correo)
+                self.direccion,
+                self.ciudad,
+                self.tipo)
+
+
+class Departamento(models.Model):
+    nombre_propietario = models.CharField(max_length=30)
+    costo = models.DecimalField(max_digits=100, decimal_places=2)
+    numero_cuartos = models.IntegerField()
+    edificio = models.ForeignKey(Edificio, on_delete=models.CASCADE,
+            related_name="los_departamentos")
+
+    def __str__(self):
+        return "%s %s %s %s" % (self.nombre_propietario,
+                self.costo,
+                self.numero_cuartos,
+                self.edificio)
+
+
+
