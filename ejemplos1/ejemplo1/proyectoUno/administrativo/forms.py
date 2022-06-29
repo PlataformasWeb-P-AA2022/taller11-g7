@@ -10,7 +10,7 @@ class EstudianteForm(ModelForm):
         model = Estudiante
         fields = ['nombre', 'apellido', 'cedula', 'correo']
         labels = {
-            'nombre': _('Ingrese nombre por favor:'),
+            'nombre': _('Ingrese nombre completos por favor:'),
             'apellido': _('Ingrese apellido por favor'),
             'cedula': _('Ingrese cédula por favor'),
             'correo': _('Ingrese correo por favor'),
@@ -22,7 +22,7 @@ class EstudianteForm(ModelForm):
         num_palabras = len(valor.split())
 
         if num_palabras < 2:
-            raise forms.ValidationError("Ingrese dos nombre por favor")
+            raise forms.ValidationError("Ingrese dos nombres por favor")
         return valor
 
     def clean_apellido(self):
