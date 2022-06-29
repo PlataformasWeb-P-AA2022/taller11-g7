@@ -9,6 +9,13 @@ class EdificioForm(ModelForm):
     class Meta:
         model = Edificio
         fields = ['nombre', 'direccion', 'ciudad',  'tipo']
+        
+        labels = {
+            'nombre': _('Ingrese nombre del edificio por favor'),
+            'direccion': _('Ingrese la direccion por favor'),
+            'ciudad': _('Ingrese ciudad por favor'),
+            'tipo': _('Ingrese el tipo de edificio por favor'),
+        }
     
     def clean_ciudad(self):
         valor = self.cleaned_data['ciudad']
@@ -21,15 +28,22 @@ class DepartamentoForm(ModelForm):
         model = Departamento
         fields = ['nombre_propietario', 'costo', 'numero_cuartos', 'edificio']
 
+        labels = {
+            'nombre_propietario': _('Ingrese nombre por favor'),
+            'costo': _('Ingrese el costo por favor'),
+            'numero_cuartos': _('Ingrese el numero de cuartos por favor'),
+            'edificio': _('Ingrese el edificio por favor'),
+        }
+
     def clean_costo(self):
         valor = self.cleaned_data['costo']
-        if len(valor) > 10000:
+        if (valor) > 100000:
             raise forms.ValidationError("El costo del departamento no puede ser mayor a 10000")
         return valor
     
     def clean_numero_cuartos(self):
         valor = self.cleaned_data['numero_cuartos']
-        if len(valor) == 0 and len(valor) > 7 :
+        if (valor) == 0 or (valor) > 7 :
             raise forms.ValidationError("Ingrese un numero de cuarto diferente a 0 y menor a 7")
         return valor
     
@@ -56,13 +70,13 @@ class DepartamentoEdificioForm(ModelForm):
     
     def clean_costo(self):
         valor = self.cleaned_data['costo']
-        if len(valor) > 10000:
+        if (valor) > 10000:
             raise forms.ValidationError("El costo del departamento no puede ser mayor a 10000")
         return valor
     
     def clean_numero_cuartos(self):
         valor = self.cleaned_data['numero_cuartos']
-        if len(valor) == 0 and len(valor) > 7 :
+        if (valor) == 0 or (valor) > 7 :
             raise forms.ValidationError("Ingrese un numero de cuarto diferente a 0 y menor a 7")
         return valor
     
