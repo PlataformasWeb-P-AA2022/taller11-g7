@@ -16,7 +16,7 @@ class EdificioForm(ModelForm):
             raise forms.ValidationError("La primera letra de la ciudad no puede ser 'L' ")
         return valor
 
-class DepartamentoForms(ModelForm):
+class DepartamentoForm(ModelForm):
     class Meta:
         model = Departamento
         fields = ['nombre_propietario', 'costo', 'numero_cuartos', 'edificio']
